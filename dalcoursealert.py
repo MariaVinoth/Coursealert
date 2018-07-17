@@ -12,7 +12,7 @@ class Course_alert():
         self.url = url
 
     def send_email(self,no_of_seats):
-        message = 'Subject: Hey QA has' + no_of_seats + ' seats available'
+        message = 'Subject: Hey QA has ' + no_of_seats + ' seats available'
         fromaddress = 'mariavinoth619@yahoo.com'
         toaddress = 'vinoth@dal.ca'
         server = smtplib.SMTP("smtp.mail.yahoo.com", 587)
@@ -24,7 +24,7 @@ class Course_alert():
         print("Alert email sent!")
 
     def check_seats(self):
-        uClient = requests.get(self.url)
+        uClient = requests.get(self.url,timeout=5)
         soup = BeautifulSoup(uClient.content, 'lxml')
         containers = soup.find_all('td')
         for i in range(len(containers)):
